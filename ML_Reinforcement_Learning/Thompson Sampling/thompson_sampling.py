@@ -4,6 +4,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
+import time
 
 # Importing the dataset
 dataset = pd.read_csv('Ads_CTR_Optimisation.csv')
@@ -31,6 +32,8 @@ for n in range(0, N):
     else:
         numbers_of_rewards_0[ad] = numbers_of_rewards_0[ad] + 1
     total_reward = total_reward + reward
+    #print('Received Reward:{} Favoring the Ad:{}'.format(total_reward,pd.Series(ads_selected).tail(n).value_counts(normalize=True)))
+    #time.sleep(1)
 
 # Visualising the results - Histogram
 plt.hist(ads_selected)
@@ -38,3 +41,5 @@ plt.title('Histogram of ads selections')
 plt.xlabel('Ads')
 plt.ylabel('Number of times each ad was selected')
 plt.show()
+
+pd.Series(ads_selected).tail(1500).value_counts(normalize=True)
